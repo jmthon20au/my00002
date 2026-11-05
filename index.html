@@ -5,13 +5,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>بوتـاتي - Telegram Bots</title>
-    
-    <!-- Tailwind CSS (v3 via Script for latest features) -->
+
+    <!-- أيقونة المتصفح المصغرة (Favicon) -->
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/4712/4712010.png" type="image/png">
+
+    <!-- أكواد معاينة الرابط عند المشاركة -->
+    <meta property="og:title" content="بوتـاتي - Telegram Bots">
+    <meta property="og:description" content="مجموعة من أفضل البوتات العربية المجانية لتسهيل حياتك الرقمية">
+    <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/4712/4712010.png">
+    <!-- تكدر تخلي رابط أي صورة تعجبك تطلع كغلاف -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- FontAwesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
+
     <!-- Google Fonts (Tajawal) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,11 +52,17 @@
             animation: gradientBG 15s ease infinite;
             background-attachment: fixed;
         }
-
+        
         @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
         
         .glass-card {
@@ -59,8 +72,8 @@
             border: 1px solid rgba(255, 255, 255, 1);
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
         }
-
         /* Fade-in Animation */
+        
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -71,23 +84,27 @@
                 transform: translateY(0);
             }
         }
+        
         .animate-fade-in-up {
             animation: fadeInUp 0.6s ease-out forwards;
         }
-        
         /* Custom Scrollbar */
-        ::-webkit-scrollbar {
+        
+         ::-webkit-scrollbar {
             width: 8px;
         }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1; 
+        
+         ::-webkit-scrollbar-track {
+            background: #f1f1f1;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #a855f7; 
+        
+         ::-webkit-scrollbar-thumb {
+            background: #a855f7;
             border-radius: 10px;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #9333ea; 
+        
+         ::-webkit-scrollbar-thumb:hover {
+            background: #9333ea;
         }
     </style>
 </head>
@@ -300,18 +317,17 @@
     <section id="privacy" class="container mx-auto px-4 py-12">
         <div class="bg-gradient-to-br from-red-50 to-orange-50 border border-red-100 rounded-3xl shadow-lg max-w-4xl mx-auto p-8 relative overflow-hidden">
             <div class="absolute top-0 right-0 w-32 h-32 bg-red-500 opacity-5 rounded-bl-full"></div>
-            
+
             <div class="flex flex-col items-center text-center mb-6">
                 <div class="w-16 h-16 bg-red-100 text-red-500 rounded-full flex items-center justify-center text-3xl mb-4 shadow-inner">
                     <i class="fas fa-shield-alt"></i>
                 </div>
                 <h2 class="text-3xl font-bold text-gray-800">سياسة الخصوصية والتنبيهات</h2>
             </div>
-            
+
             <p class="text-gray-700 leading-relaxed text-center md:text-lg">
                 جميع البوتات الموجودة في هذا الموقع هي بوتات خدمية وآمنة 100% وتم إنشاؤها بهدف التسهيل على المستخدمين.
-                <br class="hidden sm:block"><br class="hidden sm:block">
-                لا نقوم بجمع أو تخزين أي بيانات خاصة بالمستخدمين. استخدام البوتات يتم بشكل مباشر وآمن كلياً عبر خوادم Telegram.
+                <br class="hidden sm:block"><br class="hidden sm:block"> لا نقوم بجمع أو تخزين أي بيانات خاصة بالمستخدمين. استخدام البوتات يتم بشكل مباشر وآمن كلياً عبر خوادم Telegram.
             </p>
             <div class="mt-6 p-4 bg-white/60 rounded-xl border border-red-200 text-center">
                 <strong class="text-red-600 block mb-1"><i class="fas fa-exclamation-triangle mr-2"></i> تنبيه هام:</strong>
@@ -325,7 +341,10 @@
         <div class="container mx-auto px-4 py-8">
             <div class="flex flex-col md:flex-row items-center justify-between gap-4">
                 <div class="text-gray-600 text-sm">
-                    جميع الحقوق محفوظة &copy; <script>document.write(new Date().getFullYear())</script> | تم التصميم بكل <i class="fas fa-heart text-red-500 mx-1"></i> بواسطة <span class="font-bold text-gray-900">علي</span>
+                    جميع الحقوق محفوظة &copy;
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script> | تم التصميم بكل <i class="fas fa-heart text-red-500 mx-1"></i> بواسطة <span class="font-bold text-gray-900">علي</span>
                 </div>
                 <div class="flex items-center gap-3">
                     <span class="text-gray-500 text-sm">للدعم الفني والمقترحات:</span>
@@ -357,7 +376,7 @@
 
         // Scroll to Top Button Logic
         const scrollBtn = document.getElementById("scrollToTop");
-        
+
         window.addEventListener("scroll", () => {
             if (window.scrollY > 300) {
                 scrollBtn.classList.remove("opacity-0", "invisible");
@@ -376,4 +395,5 @@
         });
     </script>
 </body>
+
 </html>
