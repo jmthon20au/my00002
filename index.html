@@ -1,139 +1,379 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="scroll-smooth">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>بوتـاتي - Telegram Bots</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
-</head>
-<body class="bg-gradient-to-br from-gray-100 via-purple-50 to-pink-100 text-gray-800">
-<div id="welcome-screen" class="fixed inset-0 bg-white z-50 flex items-center justify-center text-center transition-opacity duration-1000">
-  <div>
-    <h2 class="text-3xl font-bold text-purple-600">مرحباً بك في بوتــاتي</h2>
-    <p class="text-gray-600 mt-2">استعد لتجربة مميزة مع أفضل بوتات تيليجرام</p>
-  </div>
-</div>
-<script>
-  setTimeout(() => {
-    document.getElementById('welcome-screen').style.opacity = '0';
-    setTimeout(() => {
-      document.getElementById('welcome-screen').remove();
-    }, 1000);
-  }, 2500);
-</script>
-
-<header class="text-center py-8 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 shadow-lg rounded-lg mx-4 md:mx-0">
-  <h1 class="text-4xl font-extrabold text-white mb-2">بوتــاتي على تيليجرام</h1>
-  
-</header>
-<section class="text-center py-8">
-  <h2 class="text-2xl font-bold text-gray-800 mb-2">تعرف على بوتاتنا</h2>
-  <p class="text-gray-600">مجموعة من أفضل البوتات العربية المجانية لتسهيل حياتك الرقمية</p>
-<a href="#privacy" class="mt-4 inline-block bg-yellow-400 text-gray-800 font-semibold px-5 py-2 rounded-full hover:bg-yellow-500 transition duration-300 shadow-md">
-  سياسة الخصوصية
-</a>
-</section>
-  <main class="container mx-auto p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>بوتـاتي - Telegram Bots</title>
     
-    <!-- Bot 1 -->
-    <div class="bg-white rounded-2xl shadow-lg p-5 text-center hover:scale-105 transition duration-300">
-      <img src="https://i.postimg.cc/zBYqtkBG/IMG-20250527-174251-771.jpg" alt="صورة البوت" class="w-24 h-24 mx-auto rounded-full mb-4 shadow object-cover">
-      <h2 class="text-xl font-semibold">تحسين جودة الصور</h2>
-      <p class="text-gray-600 mt-2">يقوم برفع جودة الصورة، فقط ارسل الصوره.</p>
-      <a href="https://t.me/Edit_pictu_bot" target="_blank" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600">
-        <i class="fab fa-telegram-plane mr-2"></i>زيارة البوت
-      </a>
+    <!-- Tailwind CSS (v3 via Script for latest features) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts (Tajawal) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+    <!-- Custom Config & Styles -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#e0e7ff',
+                            DEFAULT: '#6366f1',
+                            dark: '#4f46e5',
+                        },
+                        tg: '#0088cc'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(-45deg, #f3f4f6, #e0e7ff, #fae8ff, #e0f2fe);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            background-attachment: fixed;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 1);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #a855f7; 
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9333ea; 
+        }
+    </style>
+</head>
+
+<body class="text-gray-800 antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="fixed inset-0 bg-white z-[100] flex flex-col items-center justify-center text-center transition-opacity duration-700">
+        <div class="animate-bounce mb-4">
+            <i class="fab fa-telegram text-6xl text-blue-500"></i>
+        </div>
+        <h2 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 mb-2">مرحباً بك في بوتــاتي</h2>
+        <p class="text-gray-500 text-lg">استعد لتجربة مميزة مع أفضل بوتات تيليجرام...</p>
     </div>
 
-    <!-- Bot 2 -->
-    <div class="bg-white rounded-2xl shadow-lg p-5 text-center hover:scale-105 transition duration-300">
-      <img src="https://i.postimg.cc/TwxXqY7y/IMG-20250527-174348-767.jpg" alt="صورة البوت" class="w-24 h-24 mx-auto rounded-full mb-4 shadow object-cover">
-      <h2 class="text-xl font-semibold">تحويل الكتابة إلى صوت</h2>
-      <p class="text-gray-600 mt-2">تحويل الكلام إلى صوت أو العكس مع اختيار اللغة ونوع الصوت.</p>
-      <a href="https://t.me/voiwri_bot" target="_blank" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600">
-        <i class="fab fa-telegram-plane mr-2"></i>زيارة البوت
-      </a>
-    </div>
+    <!-- Hero Section -->
+    <header class="relative pt-24 pb-16 text-center px-4 sm:px-6 lg:px-8 text-gray-800">
+        <div class="max-w-3xl mx-auto animate-fade-in-up">
+            <div class="inline-flex items-center justify-center p-3 bg-white/50 rounded-full mb-6 backdrop-blur-sm border border-gray-200 shadow-sm">
+                <i class="fab fa-telegram text-2xl text-blue-500 mr-2 ml-2"></i>
+                <span class="font-semibold tracking-wide text-gray-700">الدليل الشامل</span>
+            </div>
+            <h1 class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight text-gray-900">
+                بوتــاتي على <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">تيليجرام</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
+                مجموعة مختارة من أفضل البوتات العربية المجانية لتسهيل حياتك الرقمية وإنجاز مهامك بسرعة وسهولة.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#bots-grid" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold px-8 py-3 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 w-full sm:w-auto">
+                    تصفح البوتات <i class="fas fa-arrow-down mr-2"></i>
+                </a>
+                <a href="#privacy" class="bg-white/60 border border-gray-300 text-gray-700 font-semibold px-8 py-3 rounded-full hover:bg-white hover:shadow transition-all duration-300 w-full sm:w-auto">
+                    سياسة الخصوصية
+                </a>
+            </div>
+        </div>
+    </header>
 
-    <!-- Bot 3 -->
-    <div class="bg-white rounded-2xl shadow-lg p-5 text-center hover:scale-105 transition duration-300">
-      <img src="https://i.postimg.cc/1tsLV7Xw/IMG-20250527-174438-638.jpg" alt="صورة البوت" class="w-24 h-24 mx-auto rounded-full mb-4 shadow object-cover">
-      <h2 class="text-xl font-semibold">التحميل من التطبيقات</h2>
-      <p class="text-gray-600 mt-2">تحميل فيديوهات من جميع التطبيقات بدون علامة مائية.</p>
-      <a href="https://t.me/Dowshmed_bot" target="_blank" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600">
-        <i class="fab fa-telegram-plane mr-2"></i>زيارة البوت
-      </a>
-    </div>
+    <!-- Main Content (Bots Grid) -->
+    <main id="bots-grid" class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
 
-    <!-- Bot 4 -->
+            <!-- Bot 1 -->
+            <div class="glass-card rounded-3xl shadow-xl p-6 text-center group hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between" style="animation-delay: 0.1s;">
+                <div>
+                    <div class="relative w-24 h-24 mx-auto mb-4">
+                        <img src="https://i.postimg.cc/nzpjf5d7/Gemini-Generated-Image-ai45opai45opai45.png" alt="سايت الرسائل المجهولة" class="w-full h-full rounded-full object-cover border-4 border-blue-100 shadow-md group-hover:border-blue-300 transition-colors">
+                        <div class="absolute -bottom-2 -right-2 bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center border-2 border-white">
+                            <i class="fas fa-user-secret"></i>
+                        </div>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">سايت الرسائل المجهولة</h2>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">تعبت من بوتات المصارحة التقليدية؟ عيش تجربة تواصل مختلفة وممتعة ويا أصدقائك مع ميزات حصرية.</p>
+                </div>
+                <a href="https://t.me/sitte1_bot" target="_blank" class="block w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold py-3 rounded-xl hover:from-blue-600 hover:to-blue-700 transition-colors shadow-md">
+                    <i class="fab fa-telegram-plane ml-2"></i>بدء الاستخدام
+                </a>
+            </div>
 
-<button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" 
-  class="fixed bottom-5 left-5 bg-purple-600 text-white p-3 rounded-full shadow-lg hover:bg-purple-700">
-  <i class="fas fa-arrow-up"></i>
-</button>
-    <!-- Bot 5 -->
-    <div class="bg-white rounded-2xl shadow-lg p-5 text-center hover:scale-105 transition duration-300">
-      <img src="https://i.postimg.cc/nr5R23Fd/IMG-20250527-174615-758.jpg" alt="صورة البوت" class="w-24 h-24 mx-auto rounded-full mb-4 shadow object-cover">
-      <h2 class="text-xl font-semibold">الدردشة مع الذكاء الاصطناعي</h2>
-      <p class="text-gray-600 mt-2">تحدث مباشرة مع الذكاء الاصطناعي.</p>
-      <a href="https://t.me/Chatg_pbot" target="_blank" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600">
-        <i class="fab fa-telegram-plane mr-2"></i>زيارة البوت
-      </a>
-    </div>
+            <!-- Bot 2 -->
+            <div class="glass-card rounded-3xl shadow-xl p-6 text-center group hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between" style="animation-delay: 0.2s;">
+                <div>
+                    <div class="relative w-24 h-24 mx-auto mb-4">
+                        <img src="https://i.postimg.cc/9MY94V4B/file-000000000abc820aa81a12b205999e5c.png" alt="Section Up Bot" class="w-full h-full rounded-full object-cover border-4 border-purple-100 shadow-md group-hover:border-purple-300 transition-colors">
+                        <div class="absolute -bottom-2 -right-2 bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center border-2 border-white">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">Section Up Bot</h2>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">إنشاء وفحص جلسات Telethon و Pyrogram بكل سهولة عبر واجهة مبسطة وخطوات واضحة ومباشرة.</p>
+                </div>
+                <a href="https://t.me/section_up_bot" target="_blank" class="block w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold py-3 rounded-xl hover:from-blue-600 hover:to-blue-700 transition-colors shadow-md">
+                    <i class="fab fa-telegram-plane ml-2"></i>بدء الاستخدام
+                </a>
+            </div>
 
-    <!-- Bot 6 -->
-    <div class="bg-white rounded-2xl shadow-lg p-5 text-center hover:scale-105 transition duration-300">
-      <img src="https://i.postimg.cc/Xqycj4W8/IMG-20250527-174651-979.jpg" alt="صورة البوت" class="w-24 h-24 mx-auto rounded-full mb-4 shadow object-cover">
-      <h2 class="text-xl font-semibold">تحويل الصور إلى PDF</h2>
-      <p class="text-gray-600 mt-2">يقوم بتحويل صورك إلى ملف PDF.</p>
-      <a href="https://t.me/trustworthy_title_bot" target="_blank" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600">
-        <i class="fab fa-telegram-plane mr-2"></i>زيارة البوت
-      </a>
-    </div>
+            <!-- Bot 3 -->
+            <div class="glass-card rounded-3xl shadow-xl p-6 text-center group hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between" style="animation-delay: 0.3s;">
+                <div>
+                    <div class="relative w-24 h-24 mx-auto mb-4">
+                        <img src="https://i.postimg.cc/zBYqtkBG/IMG-20250527-174251-771.jpg" alt="تحسين جودة الصور" class="w-full h-full rounded-full object-cover border-4 border-green-100 shadow-md group-hover:border-green-300 transition-colors">
+                        <div class="absolute -bottom-2 -right-2 bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center border-2 border-white">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">تحسين جودة الصور</h2>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">هل لديك صورة قديمة أو غير واضحة؟ أرسلها فقط، وسيقوم البوت برفع جودتها وتحسينها فوراً.</p>
+                </div>
+                <a href="https://t.me/Edit_pictu_bot" target="_blank" class="block w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold py-3 rounded-xl hover:from-blue-600 hover:to-blue-700 transition-colors shadow-md">
+                    <i class="fab fa-telegram-plane ml-2"></i>بدء الاستخدام
+                </a>
+            </div>
 
-    <!-- Bot 7 -->
-    <div class="bg-white rounded-2xl shadow-lg p-5 text-center hover:scale-105 transition duration-300">
-      <img src="https://i.postimg.cc/nhdkGd3q/IMG-20250527-174828-762.jpg" alt="صورة البوت" class="w-24 h-24 mx-auto rounded-full mb-4 shadow object-cover">
-      <h2 class="text-xl font-semibold">الترجمة</h2>
-      <p class="text-gray-600 mt-2">يترجم الكلمات إلى 90 لغة ويترجم ملفات PDF.</p>
-      <a href="https://t.me/ENG_AR1_bot" target="_blank" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600">
-        <i class="fab fa-telegram-plane mr-2"></i>زيارة البوت
-      </a>
-    </div>
+            <!-- Bot 4 -->
+            <div class="glass-card rounded-3xl shadow-xl p-6 text-center group hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between" style="animation-delay: 0.4s;">
+                <div>
+                    <div class="relative w-24 h-24 mx-auto mb-4">
+                        <img src="https://i.postimg.cc/TwxXqY7y/IMG-20250527-174348-767.jpg" alt="تحويل الكتابة إلى صوت" class="w-full h-full rounded-full object-cover border-4 border-yellow-100 shadow-md group-hover:border-yellow-300 transition-colors">
+                        <div class="absolute -bottom-2 -right-2 bg-yellow-500 text-white rounded-full w-8 h-8 flex items-center justify-center border-2 border-white">
+                            <i class="fas fa-volume-up"></i>
+                        </div>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">الكتابة إلى صوت</h2>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">تحويل النصوص المكتوبة إلى صوت أو العكس بدقة عالية، مع إمكانية اختيار اللغة ونوع الصوت.</p>
+                </div>
+                <a href="https://t.me/voiwri_bot" target="_blank" class="block w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold py-3 rounded-xl hover:from-blue-600 hover:to-blue-700 transition-colors shadow-md">
+                    <i class="fab fa-telegram-plane ml-2"></i>بدء الاستخدام
+                </a>
+            </div>
 
-    <!-- Bot 8 -->
+            <!-- Bot 5 -->
+            <div class="glass-card rounded-3xl shadow-xl p-6 text-center group hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between" style="animation-delay: 0.5s;">
+                <div>
+                    <div class="relative w-24 h-24 mx-auto mb-4">
+                        <img src="https://i.postimg.cc/1tsLV7Xw/IMG-20250527-174438-638.jpg" alt="التحميل من التطبيقات" class="w-full h-full rounded-full object-cover border-4 border-pink-100 shadow-md group-hover:border-pink-300 transition-colors">
+                        <div class="absolute -bottom-2 -right-2 bg-pink-500 text-white rounded-full w-8 h-8 flex items-center justify-center border-2 border-white">
+                            <i class="fas fa-download"></i>
+                        </div>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">التحميل من التطبيقات</h2>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">حمّل الفيديوهات والمقاطع من جميع منصات التواصل الاجتماعي بسهولة وبدون علامة مائية.</p>
+                </div>
+                <a href="https://t.me/Dowshmed_bot" target="_blank" class="block w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold py-3 rounded-xl hover:from-blue-600 hover:to-blue-700 transition-colors shadow-md">
+                    <i class="fab fa-telegram-plane ml-2"></i>بدء الاستخدام
+                </a>
+            </div>
 
-    <!-- Bot 9 -->
-    <div class="bg-white rounded-2xl shadow-lg p-5 text-center hover:scale-105 transition duration-300">
-      <img src="https://i.postimg.cc/508LTpS7/IMG-20250527-174918-187.jpg" alt="صورة البوت" class="w-24 h-24 mx-auto rounded-full mb-4 shadow object-cover">
-      <h2 class="text-xl font-semibold">حساب العمر</h2>
-      <p class="text-gray-600 mt-2">يرسل لك عمرك بدقة عند إرسال تاريخ ميلادك.</p>
-      <a href="https://t.me/my_0age0_bot" target="_blank" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600">
-        <i class="fab fa-telegram-plane mr-2"></i>زيارة البوت
-      </a>
-    </div>
-<div class="bg-gray-200 rounded-2xl shadow-inner p-5 text-center border-dashed border-2 border-gray-400">
-  <h2 class="text-xl font-semibold text-gray-700">قريباً</h2>
-  <p class="text-gray-600 mt-2">بوتات جديدة ومميزة سيتم إضافتها قريباً!</p>
-</div>
-  </main>
+            <!-- Bot 6 -->
+            <div class="glass-card rounded-3xl shadow-xl p-6 text-center group hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between" style="animation-delay: 0.6s;">
+                <div>
+                    <div class="relative w-24 h-24 mx-auto mb-4">
+                        <img src="https://i.postimg.cc/nr5R23Fd/IMG-20250527-174615-758.jpg" alt="الدردشة مع الذكاء الاصطناعي" class="w-full h-full rounded-full object-cover border-4 border-teal-100 shadow-md group-hover:border-teal-300 transition-colors">
+                        <div class="absolute -bottom-2 -right-2 bg-teal-500 text-white rounded-full w-8 h-8 flex items-center justify-center border-2 border-white">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">الذكاء الاصطناعي</h2>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">مساعدك الشخصي! تحدث مباشرة مع أحدث نماذج الذكاء الاصطناعي واحصل على إجابات فورية.</p>
+                </div>
+                <a href="https://t.me/Chatg_pbot" target="_blank" class="block w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold py-3 rounded-xl hover:from-blue-600 hover:to-blue-700 transition-colors shadow-md">
+                    <i class="fab fa-telegram-plane ml-2"></i>بدء الاستخدام
+                </a>
+            </div>
 
-<section id="privacy" class="bg-white rounded-xl shadow-lg mx-4 md:mx-auto my-10 max-w-4xl p-6 border border-gray-200">
-  <h2 class="text-2xl font-bold text-red-500 mb-4 text-center"><i class="fas fa-shield-alt mr-2"></i>سياسة الخصوصية والتنبيه</h2>
-  <p class="text-gray-700 leading-relaxed text-center">
-    جميع البوتات الموجودة في هذا الموقع هي بوتات خدمية وآمنة 100% وتم إنشاؤها بهدف التسهيل على المستخدمين.
-    <br class="hidden sm:block">
-    لا نقوم بجمع أو تخزين أي بيانات خاصة بالمستخدمين. استخدام البوتات يتم بشكل مباشر وآمن عبر Telegram.
-    <br>
-    <strong class="text-red-600">تنبيه:</strong> نحن غير مسؤولين عن أي استخدام غير قانوني للبوتات، أو أي محتوى يتم تداوله داخلها من قبل المستخدمين.
-  </p>
-</section>
+            <!-- Bot 7 -->
+            <div class="glass-card rounded-3xl shadow-xl p-6 text-center group hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between" style="animation-delay: 0.7s;">
+                <div>
+                    <div class="relative w-24 h-24 mx-auto mb-4">
+                        <img src="https://i.postimg.cc/Xqycj4W8/IMG-20250527-174651-979.jpg" alt="تحويل الصور إلى PDF" class="w-full h-full rounded-full object-cover border-4 border-red-100 shadow-md group-hover:border-red-300 transition-colors">
+                        <div class="absolute -bottom-2 -right-2 bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center border-2 border-white">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">تحويل الصور لـ PDF</h2>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">أداة سريعة لجمع صورك ومستنداتك وتحويلها إلى ملف PDF واحد منظم بسهولة تامة.</p>
+                </div>
+                <a href="https://t.me/trustworthy_title_bot" target="_blank" class="block w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold py-3 rounded-xl hover:from-blue-600 hover:to-blue-700 transition-colors shadow-md">
+                    <i class="fab fa-telegram-plane ml-2"></i>بدء الاستخدام
+                </a>
+            </div>
 
-  <footer class="text-center py-6 mt-10 text-sm text-gray-500">
-    جميع الحقوق محفوظة &copy; 2025 | تصميم علي <br>
-    للدعم والمشاكل: <a href="https://t.me/ali0_chaT_bot" class="text-blue-600">@ali0_chaT_bot</a>
-  </footer>
+            <!-- Bot 8 -->
+            <div class="glass-card rounded-3xl shadow-xl p-6 text-center group hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between" style="animation-delay: 0.8s;">
+                <div>
+                    <div class="relative w-24 h-24 mx-auto mb-4">
+                        <img src="https://i.postimg.cc/nhdkGd3q/IMG-20250527-174828-762.jpg" alt="الترجمة" class="w-full h-full rounded-full object-cover border-4 border-orange-100 shadow-md group-hover:border-orange-300 transition-colors">
+                        <div class="absolute -bottom-2 -right-2 bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center border-2 border-white">
+                            <i class="fas fa-language"></i>
+                        </div>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">المترجم الشامل</h2>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">ترجمة النصوص لأكثر من 90 لغة عالمية، مع ميزة قراءة وترجمة ملفات PDF مباشرة.</p>
+                </div>
+                <a href="https://t.me/ENG_AR1_bot" target="_blank" class="block w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold py-3 rounded-xl hover:from-blue-600 hover:to-blue-700 transition-colors shadow-md">
+                    <i class="fab fa-telegram-plane ml-2"></i>بدء الاستخدام
+                </a>
+            </div>
 
+            <!-- Bot 9 -->
+            <div class="glass-card rounded-3xl shadow-xl p-6 text-center group hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between" style="animation-delay: 0.9s;">
+                <div>
+                    <div class="relative w-24 h-24 mx-auto mb-4">
+                        <img src="https://i.postimg.cc/508LTpS7/IMG-20250527-174918-187.jpg" alt="حساب العمر" class="w-full h-full rounded-full object-cover border-4 border-cyan-100 shadow-md group-hover:border-cyan-300 transition-colors">
+                        <div class="absolute -bottom-2 -right-2 bg-cyan-500 text-white rounded-full w-8 h-8 flex items-center justify-center border-2 border-white">
+                            <i class="fas fa-birthday-cake"></i>
+                        </div>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">حاسبة العمر</h2>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">أدخل تاريخ ميلادك وسيقوم البوت بحساب عمرك بدقة بالسنوات والأشهر والأيام.</p>
+                </div>
+                <a href="https://t.me/my_0age0_bot" target="_blank" class="block w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold py-3 rounded-xl hover:from-blue-600 hover:to-blue-700 transition-colors shadow-md">
+                    <i class="fab fa-telegram-plane ml-2"></i>بدء الاستخدام
+                </a>
+            </div>
+
+            <!-- Coming Soon Placeholder -->
+            <div class="rounded-3xl border-2 border-dashed border-gray-300 bg-white/40 backdrop-blur-sm p-6 text-center flex flex-col items-center justify-center min-h-[300px] hover:bg-white/60 transition-colors">
+                <div class="text-gray-400 text-5xl mb-4">
+                    <i class="fas fa-hourglass-half animate-pulse"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-600 mb-2">قريباً</h2>
+                <p class="text-gray-500 text-sm">انتظروا المزيد من البوتات الجديدة والمفيدة التي سيتم إضافتها قريباً للقائمة!</p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Privacy Policy Section -->
+    <section id="privacy" class="container mx-auto px-4 py-12">
+        <div class="bg-gradient-to-br from-red-50 to-orange-50 border border-red-100 rounded-3xl shadow-lg max-w-4xl mx-auto p-8 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-red-500 opacity-5 rounded-bl-full"></div>
+            
+            <div class="flex flex-col items-center text-center mb-6">
+                <div class="w-16 h-16 bg-red-100 text-red-500 rounded-full flex items-center justify-center text-3xl mb-4 shadow-inner">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-800">سياسة الخصوصية والتنبيهات</h2>
+            </div>
+            
+            <p class="text-gray-700 leading-relaxed text-center md:text-lg">
+                جميع البوتات الموجودة في هذا الموقع هي بوتات خدمية وآمنة 100% وتم إنشاؤها بهدف التسهيل على المستخدمين.
+                <br class="hidden sm:block"><br class="hidden sm:block">
+                لا نقوم بجمع أو تخزين أي بيانات خاصة بالمستخدمين. استخدام البوتات يتم بشكل مباشر وآمن كلياً عبر خوادم Telegram.
+            </p>
+            <div class="mt-6 p-4 bg-white/60 rounded-xl border border-red-200 text-center">
+                <strong class="text-red-600 block mb-1"><i class="fas fa-exclamation-triangle mr-2"></i> تنبيه هام:</strong>
+                <span class="text-gray-600">نحن غير مسؤولين عن أي استخدام غير قانوني للبوتات، أو أي محتوى يتم تداوله داخلها من قبل المستخدمين.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white/30 backdrop-blur-md border-t border-gray-200 mt-auto shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="text-gray-600 text-sm">
+                    جميع الحقوق محفوظة &copy; <script>document.write(new Date().getFullYear())</script> | تم التصميم بكل <i class="fas fa-heart text-red-500 mx-1"></i> بواسطة <span class="font-bold text-gray-900">علي</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-gray-500 text-sm">للدعم الفني والمقترحات:</span>
+                    <a href="https://t.me/ali0_chaT_bot" target="_blank" class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 hover:text-white hover:bg-blue-600 px-4 py-2 rounded-full transition-all text-sm font-semibold shadow-sm">
+                        <i class="fab fa-telegram"></i> @ali0_chaT_bot
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="fixed bottom-6 left-6 bg-gradient-to-r from-purple-600 to-blue-500 text-white w-12 h-12 rounded-full shadow-xl flex items-center justify-center hover:scale-110 hover:shadow-2xl transition-all duration-300 opacity-0 invisible z-50">
+        <i class="fas fa-arrow-up text-lg"></i>
+    </button>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Welcome Screen Logic
+        document.addEventListener("DOMContentLoaded", () => {
+            const welcomeScreen = document.getElementById('welcome-screen');
+            setTimeout(() => {
+                welcomeScreen.style.opacity = '0';
+                setTimeout(() => {
+                    welcomeScreen.remove();
+                }, 700); // Wait for transition
+            }, 1800); // Display time
+        });
+
+        // Scroll to Top Button Logic
+        const scrollBtn = document.getElementById("scrollToTop");
+        
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+                scrollBtn.classList.remove("opacity-0", "invisible");
+                scrollBtn.classList.add("opacity-100", "visible");
+            } else {
+                scrollBtn.classList.add("opacity-0", "invisible");
+                scrollBtn.classList.remove("opacity-100", "visible");
+            }
+        });
+
+        scrollBtn.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
 </body>
 </html>
